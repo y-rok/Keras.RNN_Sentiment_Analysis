@@ -38,7 +38,7 @@ optional arguments:
 
 Example : 
 ```
-
+python3 train.py --dataset=IMDB --model_name=BRNN_LSTM --num_epoch=10 --batch_size=32 --layer=50,50
 ```
 ### Monitoring through tensorboard
 
@@ -63,8 +63,9 @@ optional arguments:
 
 Example : 
 ```
-
+python3 eval.py --model_path=model/BRNN_GRU_[300]/02_0.84.hdf5 --dataset=IMDB
 ```
+
 
 ## References
 
