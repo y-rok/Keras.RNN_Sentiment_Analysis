@@ -1,5 +1,5 @@
 # Keras.RNN_Sentiment_Analysis
-RNN and Bidirectional RNN Model trained with IMDB Movie review data to analyze sentiment 
+RNN and bidirectional RNN training with IMDB movie review data to analyze sentiment
 
 ## Requirements
 
