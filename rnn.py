@@ -1,7 +1,6 @@
 import config
-from keras.layers import Dense, Embedding,Dropout
-from keras.layers import LSTM, GRU,LSTMCell,GRUCell,Bidirectional
-from keras.layers import RNN as keras_RNN
+from keras.layers import Dense, Embedding
+from keras.layers import LSTM, GRU,Bidirectional
 from keras.models import Sequential
 from keras.callbacks import ModelCheckpoint, TensorBoard
 from keras.models import load_model
@@ -16,7 +15,6 @@ class RNN(object):
 
     def _get_model(self,unit_num,return_seq=True):
 
-
         if self.model_name==config.RNN_LSTM:
             return LSTM(unit_num,return_sequences=return_seq,dropout=0.2,recurrent_dropout=0.2)
         elif self.model_name==config.RNN_GRU:
@@ -28,19 +26,6 @@ class RNN(object):
         elif self.model_name==config.BD_GRU:
             return Bidirectional(GRU(unit_num,return_sequences=return_seq,dropout=0.2,recurrent_dropout=0.2))
 
-        # cells=[]
-        # if self.model_name == config.RNN_LSTM or self.model_name == config.BD_LSTM:
-        #     for unit_num in self.layer:
-        #         cells.append(LSTMCell(unit_num))
-        #     if self.model_name==config.RNN_LSTM:
-        #         return keras_RNN(cells)
-        #     elif self.model_name==config.BD_LSTM:
-        #         return Bidirectional()
-        #
-        # elif self.model_name == config.RNN_GRU or self.model_name == config.BD_GRU:
-        #     for unit_num in self.layer:
-        #         cells.append(GRUCell(unit_num))
-        #         return keras_RNN(cells)
 
     def _get_log_path(self):
         return config.LOG_PATH+self.model_name+'_'+str(self.layer).replace(" ","")+"/"
@@ -65,12 +50,6 @@ class RNN(object):
         # output layer
         # [batch_size, unit_num] -> [batch_size,1]
         self.model.add(Dense(1, activation='sigmoid'))
-
-
-        # if self.model_name == config.RNN_GRU or self.model_name == config.RNN_LSTM:
-        #     # output layer
-        #     # [batch_size, unit_num] -> [batch_size,1]
-        #     self.model.add(Dense(1, activation='sigmoid'))
 
         self.model.compile(loss='binary_crossentropy',
                            optimizer='adam',

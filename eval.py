@@ -10,10 +10,6 @@ def build_parser():
     models_str = ' / '.join(config.rnn_model_list)
     dataset_str=' / '.join(config.dataset_list)
 
-    # parser.add_argument('--model_name', help=textwrap.dedent('''\
-    # BD -> Bidirectional RNN
-    # '''+'LIST = '+models_str), required=True)
-
     parser.add_argument('--model_path', help='saved model path', required=True)
     parser.add_argument('--dataset', '-D', help='LIST = '+dataset_str, required=True)
 
@@ -40,7 +36,6 @@ if __name__ == "__main__":
 
     parser = build_parser()
     FLAGS = parser.parse_args()
-    # FLAGS.model_path = FLAGS.model_path.upper()
     FLAGS.dataset=FLAGS.dataset.upper()
 
     if FLAGS.dataset==config.IMDB_DATASET:

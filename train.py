@@ -18,35 +18,16 @@ def build_parser():
     BD -> Bidirectional RNN
     '''+'LIST = '+models_str), required=True)
     parser.add_argument('--dataset', '-D', help='LIST = '+dataset_str, required=True)
-
-    # parser.add_argument('--layer',help=textwrap.dedent('''\
-    #     the structure of neural network
-    #     ex) 200,100 layer 1 =200, layer 2 = 100
-    #     (default : 300) '''), default='300')
-    #
-    # parser.add_argument('--gpu_id', default=-0, help=textwrap.dedent('''\
-    #     the id of gpu used for training
-    #     (default : 0) '''), type=int)
-
     parser.add_argument('--layer', help=textwrap.dedent('''\
          the structure of neural network 
          ex) 200,100 layer 1 =200, layer 2 = 100
          (default : 300) '''), default='300')
-
-    # parser.add_argument('--num_words', help=textwrap.dedent('''\
-    #      The number of word to keep in the vocabulary.
-    #      default : 10000'''), default=100000, type=int)
-    #
-    # parser.add_argument('--seq_len', help=textwrap.dedent('''\
-    #      The max sequence length we use in the train/valid set
-    #      default : 100'''), default=100, type=int)
 
     return parser
 
 
 def train(dataset,model_name,layer,num_epochs,batch_size,num_words,seq_len):
 
-    model =None
 
     # dynamically allocate GPU memory
     tf_config = tf.ConfigProto()
