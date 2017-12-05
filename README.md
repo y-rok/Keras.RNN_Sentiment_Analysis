@@ -11,8 +11,9 @@ RNN and Bidirectional RNN Model trained with IMDB Movie review data to analyze s
 
 ### Training model
 
-If dataset is not in the root folder, download dataset.
-And then train model corresponding to the arguments.
+- If dataset is not in the root folder, download dataset before training.
+- 0.1% of the training dataset is used to validate the model. 
+- The model is saved in ./model/[modelname_layer]/ whenever the validation accuracy is improved.
 
 ```
 python3 train.py --h
@@ -47,6 +48,8 @@ tensorboard --logdir=./log/
 ```
 
 ### Evaluating model
+
+- evaluate the saved model with testing dataset
 
 ```
 python3 eval.py --h
